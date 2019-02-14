@@ -1,0 +1,2 @@
+# population
+The program produces a bar chart showing the population growth of Prairieville, a small town in the Midwest, at 20-year intervals during the past 100 years. The program reads in the population figures (rounded to the nearest 1,000 people) for 1900, 1920, 1940, 1960, 1980, and 2000 from a file. For each year it should display the data and a bar consisting of one asterisk for each 1,000 people.
