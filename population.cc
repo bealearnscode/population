@@ -8,39 +8,64 @@
 
 #include <iostream>
 #include <fstream>
-#include <iomanip>
+
 using namespace std;
 
 int main()
 {
-   	ifstream dataIn;		// defines an input stream for a data file
-	ofstream dataOut;		// defines an output stream for an output file
+	// represents the year. the number will grow by 20
+   	// every time a new population is read
+   	int year = 1900;
 	
-
-	dataIn.open("people.txt");  // This opens the file.
-	dataOut.open("bill.out");
-
-	// Fill in the appropriate code in the blank below
-    cout << setprecision(2) << fixed << showpoint;  // formatted output
-
-
-	// Fill in the input statement that brings in the 
-	// quantity and price of the item.
-	dataIn >> quantity >> itemPrice;
-	cout << "The quantity is " << quantity << 
-	        ", and the price is " << itemPrice << "." << endl;
-
-	// Fill in the assignment statement that determines the totalbill.
-	totalBill = quantity * itemPrice;
+	// represents the number of people living in Praireieville.
+	// Will be read from people.txt
+   	int population;
+   	
+   	// represents the number of asterisks that will be displayed
+   	int asterisks;
+   	
+   	// defines the input stream
+   	ifstream dataIn;		
+   	
+   	// opens people.txt
+	dataIn.open("people.txt");
 	
-	dataOut << totalBill;
+	
+	// print header
+	cout << "PRAIRIEVILLE POPULATION GROWTH" << endl;
+	cout << "(each * represents 1000 people)" << endl;
+	
+	// as long as there is a next line to read,
+	// set that data as the population
+	while (dataIn >> population)
+	{
+		// divide the population by 1000
+		// to get the number of asterisks
+		// that should be displayed
+		asterisks = population / 1000;
+		
+		// display the year
+		cout << year << ": ";
+		
+		// as long as the iterator is less than the number of asterisks
+		// this will break then there are no more lines to read
+		for (int i = 0; i < asterisks; i++) {
+			
+			// print that number of asterisks
+			cout << "*";
+		}
+		
+		// break out of the for loop to create a new line because
+		// if you don't each asterisk will print on a single line
+		cout << endl;
 
-	// Fill in the output statement that prints the total bill,	
-      // with a label, to an output.
-    cout << "The total bill is: " << totalBill << "." << endl;
-    
+		// add twenty years
+		year += 20;
+	};
+	
+    // Closes people.txt
     dataIn.close();
-    dataOut.close();
+    
     
     system("pause");
 	return 0;
